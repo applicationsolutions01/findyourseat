@@ -8,7 +8,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap"
+        rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -340,9 +342,11 @@
             0% {
                 box-shadow: 0 0 0 0 rgba(212, 165, 195, 0.7);
             }
+
             70% {
                 box-shadow: 0 0 0 15px rgba(212, 165, 195, 0);
             }
+
             100% {
                 box-shadow: 0 0 0 0 rgba(212, 165, 195, 0);
             }
@@ -353,7 +357,7 @@
             .header h1 {
                 font-size: 2.4rem;
             }
-            
+
             .table {
                 height: 160px;
             }
@@ -363,23 +367,23 @@
             .header {
                 padding: 20px 0;
             }
-            
+
             .header h1 {
                 font-size: 2rem;
             }
-            
+
             .header p {
                 font-size: 1rem;
             }
-            
+
             .search-section {
                 padding: 20px;
             }
-            
+
             .table {
                 height: 140px;
             }
-            
+
             .table-icon {
                 font-size: 2rem;
             }
@@ -389,15 +393,15 @@
             .header h1 {
                 font-size: 1.8rem;
             }
-            
+
             .result-container {
                 padding: 30px 20px;
             }
-            
+
             .table {
                 height: 120px;
             }
-            
+
             .table-title {
                 font-size: 1rem;
             }
@@ -416,16 +420,17 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="search-container mb-4">
-                        <input type="text" id="guest-search" class="form-control" placeholder="Type your name..." autocomplete="off">
+                        <input type="text" id="guest-search" class="form-control" placeholder="Type your name..."
+                            autocomplete="off">
                         <div id="suggestions" class="suggestions-dropdown"></div>
                     </div>
-                    
+
                     <button id="search-btn" class="btn mb-4">
                         <i class="fas fa-search me-2"></i> Find My Table
                     </button>
-                    
+
                     <div class="or-divider">or</div>
-                    
+
                     <div class="dropdown-container">
                         <select id="guest-dropdown" class="form-select">
                             <option value="">Select your name from the list</option>
@@ -457,7 +462,7 @@
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
         // Sample guest data - replace with your actual guest list
         const guestData = [
@@ -476,6 +481,14 @@
             { name: "Guest 13", table: 4 },
             { name: "Guest 14", table: 5 },
         ];
+
+        function normalizeGreekText(text) {
+            return text
+                .toLowerCase()
+                .normalize("NFD") // Normalize to decomposed form to separate letters from diacritics
+                .replace(/[\u0300-\u036f]/g, "") // Remove combining diacritical marks
+                .replace(/ς/g, "σ"); // Replace final sigma with regular sigma
+        }
 
         // DOM elements
         const guestSearch = document.getElementById('guest-search');
@@ -513,77 +526,77 @@
         function createTables() {
             // Get unique table numbers
             const tableNumbers = [...new Set(guestData.map(guest => guest.table))];
-            
+
             // Sort table numbers
             tableNumbers.sort((a, b) => a - b);
 
             // Create a table element for each table number
             tableNumbers.forEach(tableNum => {
                 const guests = guestData.filter(g => g.table === tableNum);
-                
+
                 const col = document.createElement('div');
                 col.className = 'col-md-4 col-lg-3';
-                
+
                 const table = document.createElement('div');
                 table.className = 'table';
                 table.dataset.tableNumber = tableNum;
-                
+
                 const icons = ['fa-utensils'];
                 const iconIndex = (tableNum - 1) % icons.length;
-                
+
                 const tableIcon = document.createElement('div');
                 tableIcon.className = `table-icon fas ${icons[iconIndex]}`;
-                
+
                 const tableBadge = document.createElement('div');
                 tableBadge.className = 'table-number-badge';
                 tableBadge.textContent = tableNum;
-                
+
                 const tableTitle = document.createElement('div');
                 tableTitle.className = 'table-title';
                 tableTitle.textContent = `Table ${tableNum}`;
-                
+
                 const tableGuestsCount = document.createElement('div');
                 tableGuestsCount.className = 'table-guests-count';
                 tableGuestsCount.textContent = `${guests.length} guests`;
-                
+
                 // Create guest list for this table
                 const tableGuests = document.createElement('div');
                 tableGuests.className = 'table-guests';
-                
+
                 const closeBtn = document.createElement('button');
                 closeBtn.className = 'close-guests';
                 closeBtn.innerHTML = '<i class="fas fa-times"></i>';
-                closeBtn.addEventListener('click', function(e) {
+                closeBtn.addEventListener('click', function (e) {
                     tableGuests.style.display = 'none';
                     e.stopPropagation();
                 });
-                
+
                 const guestsHeader = document.createElement('h4');
                 guestsHeader.textContent = `Table ${tableNum}`;
-                
+
                 const guestsList = document.createElement('ul');
                 guests.forEach(guest => {
                     const li = document.createElement('li');
                     li.textContent = guest.name;
                     guestsList.appendChild(li);
                 });
-                
+
                 tableGuests.appendChild(closeBtn);
                 tableGuests.appendChild(guestsHeader);
                 tableGuests.appendChild(guestsList);
-                
+
                 table.appendChild(tableIcon);
                 table.appendChild(tableBadge);
                 table.appendChild(tableTitle);
                 table.appendChild(tableGuestsCount);
                 table.appendChild(tableGuests);
-                
-                table.addEventListener('click', function() {
+
+                table.addEventListener('click', function () {
                     // Hide all other guest lists first
                     document.querySelectorAll('.table-guests').forEach(el => {
                         if (el !== tableGuests) el.style.display = 'none';
                     });
-                    
+
                     // Toggle this table's guest list
                     if (tableGuests.style.display === 'block') {
                         tableGuests.style.display = 'none';
@@ -591,28 +604,31 @@
                         tableGuests.style.display = 'block';
                     }
                 });
-                
+
                 col.appendChild(table);
                 tablesContainer.appendChild(col);
             });
         }
 
         function setupEventListeners() {
-            guestSearch.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
+            guestSearch.addEventListener('input', function () {
+                const searchTerm = this.value;
                 if (searchTerm.length < 2) {
                     suggestionsDropdown.style.display = 'none';
                     return;
                 }
 
-                const matches = guestData.filter(guest =>
-                    guest.name.toLowerCase().includes(searchTerm)
-                );
+                const normalizedSearch = normalizeGreekText(searchTerm);
+                const matches = guestData.filter(guest => {
+                    const normalizedGuestName = normalizeGreekText(guest.name);
+                    return normalizedGuestName.includes(normalizedSearch) ||
+                        guest.name.split(' ').some(part => normalizeGreekText(part).includes(normalizedSearch));
+                });
 
                 showSuggestions(matches);
             });
 
-            suggestionsDropdown.addEventListener('click', function(e) {
+            suggestionsDropdown.addEventListener('click', function (e) {
                 if (e.target.tagName === 'DIV') {
                     guestSearch.value = e.target.textContent;
                     suggestionsDropdown.style.display = 'none';
@@ -620,19 +636,19 @@
                 }
             });
 
-            searchBtn.addEventListener('click', function() {
+            searchBtn.addEventListener('click', function () {
                 if (guestSearch.value.trim()) {
                     findGuestTable(guestSearch.value.trim());
                 }
             });
 
-            guestDropdown.addEventListener('change', function() {
+            guestDropdown.addEventListener('change', function () {
                 if (this.value) {
                     findGuestTable(this.value);
                 }
             });
 
-            document.addEventListener('click', function(e) {
+            document.addEventListener('click', function (e) {
                 if (e.target !== guestSearch && !suggestionsDropdown.contains(e.target)) {
                     suggestionsDropdown.style.display = 'none';
                 }
@@ -641,6 +657,7 @@
 
         function showSuggestions(guests) {
             suggestionsDropdown.innerHTML = '';
+            const searchTerm = normalizeGreekText(guestSearch.value);
 
             if (guests.length === 0) {
                 const noResult = document.createElement('div');
@@ -648,33 +665,40 @@
                 suggestionsDropdown.appendChild(noResult);
             } else {
                 guests.forEach(guest => {
-                    const div = document.createElement('div');
-                    div.textContent = guest.name;
-                    suggestionsDropdown.appendChild(div);
+                    const normalizedGuestName = normalizeGreekText(guest.name);
+                    // Show suggestion if any part of the name matches
+                    if (normalizedGuestName.includes(searchTerm) ||
+                        guest.name.split(' ').some(part => normalizeGreekText(part).includes(searchTerm))) {
+                        const div = document.createElement('div');
+                        div.textContent = guest.name; // Show the original formatted name
+                        suggestionsDropdown.appendChild(div);
+                    }
                 });
             }
 
-            suggestionsDropdown.style.display = 'block';
+            suggestionsDropdown.style.display = suggestionsDropdown.children.length ? 'block' : 'none';
         }
 
         // Find a guest's table and display it
         function findGuestTable(guestName) {
-            const guest = guestData.find(g => g.name === guestName);
+            const normalizedSearch = normalizeGreekText(guestName);
+
+            const guest = guestData.find(g => {
+                const normalizedGuestName = normalizeGreekText(g.name);
+                return normalizedGuestName.includes(normalizedSearch) ||
+                    normalizedGuestName.split(' ').some(part => part.includes(normalizedSearch));
+            });
 
             if (guest) {
-                guestNameElement.textContent = guest.name;
+                guestNameElement.textContent = guest.name; // Show the original formatted name
                 tableNumberElement.textContent = guest.table;
                 resultContainer.classList.remove('hidden');
-
-                // Highlight the table
                 highlightTable(guest.table);
             } else {
                 guestNameElement.textContent = guestName;
                 tableNumberElement.textContent = '?';
                 resultContainer.classList.remove('hidden');
             }
-
-            // Scroll to result
             resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
@@ -689,7 +713,7 @@
             const tableToHighlight = document.querySelector(`.table[data-table-number="${tableNumber}"]`);
             if (tableToHighlight) {
                 tableToHighlight.classList.add('highlighted');
-                
+
                 // Scroll to the table if it's not visible
                 tableToHighlight.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
             }
