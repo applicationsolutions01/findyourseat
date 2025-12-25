@@ -711,11 +711,8 @@
             letter-spacing: 1px;
         }
 
-        @media (max-width: 768px) {
-            body {
-                background-attachment: scroll;
-            }
-        }
+        
+
 
         /* Responsive Design */
         @media (max-width: 1400px) {
@@ -857,6 +854,16 @@
             #guest-dropdown,
             #search-btn {
                 padding: 18px 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            body::before,
+            body::after {
+                position: absolute;
+                transform: none;
+                will-change: auto;
             }
         }
     </style>
