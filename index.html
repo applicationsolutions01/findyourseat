@@ -8,7 +8,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -46,23 +48,22 @@
         /* Background with elegant pattern */
         body::before {
             content: '';
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                url('mainImage01.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.5; /* Increased opacity for better visibility */
+            background-image:
+                url('mainImage01.jpg'),
+                radial-gradient(circle at 20% 30%, rgba(216, 227, 213, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(168, 184, 165, 0.15) 0%, transparent 50%);
+            background-blend-mode: overlay, normal, normal;
+            background-size: cover, auto, auto;
+            opacity: 0.4;
             z-index: -1;
-            pointer-events: none;
-            filter: blur(0.5px) brightness(1.05); /* Slight enhancement */
         }
 
-        /* Optional: Add a color overlay for better contrast */
+        /* Subtle floating elements */
         body::after {
             content: '';
             position: fixed;
@@ -70,15 +71,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* background: linear-gradient(135deg, rgba(248, 245, 241, 0.85) 0%, rgba(248, 245, 241, 0.7) 100%); */
-            z-index: -1;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(232, 213, 181, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 40%, rgba(212, 175, 154, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 50% 80%, rgba(168, 184, 165, 0.03) 0%, transparent 20%);
             pointer-events: none;
-        }
-
-        body {
-            background: transparent;
-            min-height: 100vh;
-            position: relative;
+            z-index: -1;
         }
 
         .container {
@@ -113,9 +111,17 @@
         }
 
         @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .header h1 {
@@ -402,7 +408,7 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto;
-            box-shadow: 
+            box-shadow:
                 0 15px 40px rgba(138, 154, 135, 0.2),
                 inset 0 0 40px rgba(138, 154, 135, 0.1);
             border: 8px solid var(--pearl-green);
@@ -412,9 +418,17 @@
         }
 
         @keyframes gentlePulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.03);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         .table-number::after {
@@ -558,8 +572,15 @@
         }
 
         @keyframes gentleFadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .table-guests h4 {
@@ -639,24 +660,26 @@
         .highlighted {
             animation: highlightPulse 2s infinite;
             border-color: var(--rose-gold);
-            box-shadow: 
+            box-shadow:
                 0 0 0 15px rgba(212, 175, 154, 0.1),
                 0 20px 45px rgba(0, 0, 0, 0.15);
         }
 
         @keyframes highlightPulse {
             0% {
-                box-shadow: 
+                box-shadow:
                     0 0 0 0 rgba(212, 175, 154, 0.3),
                     0 20px 45px rgba(0, 0, 0, 0.15);
             }
+
             70% {
-                box-shadow: 
+                box-shadow:
                     0 0 0 25px rgba(212, 175, 154, 0),
                     0 20px 45px rgba(0, 0, 0, 0.15);
             }
+
             100% {
-                box-shadow: 
+                box-shadow:
                     0 0 0 0 rgba(212, 175, 154, 0),
                     0 20px 45px rgba(0, 0, 0, 0.15);
             }
@@ -688,11 +711,18 @@
             letter-spacing: 1px;
         }
 
+        @media (max-width: 768px) {
+            body {
+                background-attachment: scroll;
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 1400px) {
             .header h1 {
                 font-size: 3.5rem;
             }
+
             .table {
                 height: 230px;
             }
@@ -702,9 +732,11 @@
             .header h1 {
                 font-size: 3rem;
             }
+
             .table {
                 height: 210px;
             }
+
             .table-icon {
                 font-size: 3.5rem;
             }
@@ -714,24 +746,30 @@
             .header {
                 padding: 40px 30px;
             }
+
             .header h1 {
                 font-size: 2.8rem;
             }
+
             .header p {
                 font-size: 1.2rem;
             }
+
             .search-section,
             .result-container,
             .venue-view {
                 padding: 40px 30px;
             }
+
             .table {
                 height: 190px;
                 margin-bottom: 25px;
             }
+
             .table-icon {
                 font-size: 3rem;
             }
+
             .table-title {
                 font-size: 1.9rem;
             }
@@ -741,30 +779,38 @@
             .container {
                 padding: 20px;
             }
+
             .header {
                 padding: 35px 25px;
                 margin-bottom: 40px;
             }
+
             .header h1 {
                 font-size: 2.5rem;
             }
+
             .search-section,
             .result-container,
             .venue-view {
                 padding: 35px 25px;
             }
+
             .table {
                 height: 180px;
             }
+
             .table-icon {
                 font-size: 2.8rem;
             }
+
             .table-title {
                 font-size: 1.7rem;
             }
+
             .guest-info h2 {
                 font-size: 2.5rem;
             }
+
             .table-number {
                 width: 150px;
                 height: 150px;
@@ -776,29 +822,37 @@
             .header h1 {
                 font-size: 2.2rem;
             }
+
             .header p {
                 font-size: 1.1rem;
             }
+
             .result-container {
                 padding: 40px 25px;
             }
+
             .table {
                 height: 160px;
             }
+
             .table-icon {
                 font-size: 2.5rem;
             }
+
             .table-title {
                 font-size: 1.5rem;
             }
+
             .guest-info h2 {
                 font-size: 2rem;
             }
+
             .table-number {
                 width: 130px;
                 height: 130px;
                 font-size: 4rem;
             }
+
             #guest-search,
             #guest-dropdown,
             #search-btn {
@@ -826,7 +880,8 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="search-container mb-4">
-                        <input type="text" id="guest-search" class="form-control" placeholder="Type your name..." autocomplete="off">
+                        <input type="text" id="guest-search" class="form-control" placeholder="Type your name..."
+                            autocomplete="off">
                         <div id="suggestions" class="suggestions-dropdown"></div>
                     </div>
 
@@ -927,7 +982,7 @@
 
             // Set up event listeners
             setupEventListeners();
-            
+
             // Add subtle animation to header
             animateHeader();
         }
@@ -1082,9 +1137,9 @@
                     suggestionsDropdown.style.display = 'none';
                 }
             });
-            
+
             // Add keyboard shortcut for search
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function (e) {
                 if (e.key === 'Enter' && document.activeElement === guestSearch) {
                     if (guestSearch.value.trim()) {
                         findGuestTable(guestSearch.value.trim());
@@ -1131,10 +1186,10 @@
                 tableNumberElement.textContent = guest.table;
                 resultContainer.classList.remove('hidden');
                 highlightTable(guest.table);
-                
+
                 // Add a gentle animation to the result
                 resultContainer.style.animation = 'gentleFadeIn 0.6s ease';
-                
+
                 // Add confetti effect for fun
                 if (Math.random() > 0.7) {
                     createConfetti();
@@ -1145,7 +1200,7 @@
                 resultContainer.classList.remove('hidden');
                 resultContainer.style.animation = 'gentleFadeIn 0.6s ease';
             }
-            
+
             // Smooth scroll to result
             setTimeout(() => {
                 resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1165,7 +1220,7 @@
                 tableToHighlight.classList.add('highlighted');
 
                 // Scroll to the table if it's not visible
-                
+
             }
         }
 
@@ -1173,7 +1228,7 @@
         function createConfetti() {
             const confettiCount = 30;
             const container = document.querySelector('.container');
-            
+
             for (let i = 0; i < confettiCount; i++) {
                 const confetti = document.createElement('div');
                 confetti.innerHTML = '❁';
@@ -1186,15 +1241,15 @@
                 confetti.style.zIndex = '9999';
                 confetti.style.pointerEvents = 'none';
                 confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
-                
+
                 document.body.appendChild(confetti);
-                
+
                 // Remove confetti after animation
                 setTimeout(() => {
                     confetti.remove();
                 }, 5000);
             }
-            
+
             // Add fall animation
             const style = document.createElement('style');
             style.innerHTML = `
@@ -1214,4 +1269,3 @@
 </body>
 
 </html>
-
