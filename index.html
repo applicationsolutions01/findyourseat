@@ -15,7 +15,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --pearl-green: #d8e3d5;
@@ -34,6 +37,7 @@
             --calligraphic-secondary: 'Dancing Script', cursive;
             --serif-elegant: 'Cormorant Garamond', serif;
             --sans-clean: 'Raleway', sans-serif;
+            --greek-calligraphy : 'EB Garamond', serif;
 
 
         }
@@ -45,7 +49,7 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--greek-calligraphy);
             color: var(--charcoal);
             background-color: var(--ivory);
             line-height: 1.7;
@@ -134,7 +138,8 @@
         }
 
         .header h1 {
-            font-family: var(--calligraphic-main);
+            font-family: var(--greek-calligraphy);
+            font-style: italic;
             font-size: 4rem;
             color: var(--dark-green);
             margin-bottom: 5px;
@@ -146,7 +151,7 @@
         }
 
         .header h1::after {
-            font-family: var(--calligraphic-main);
+            font-family: var(--greek-calligraphy);
             content: '';
             position: absolute;
             bottom: 0;
@@ -159,7 +164,7 @@
 
         .header p {
             font-size: 1.7rem;
-            font-family: var(--calligraphic-secondary);
+            font-family: var(--greek-calligraphy);
             color: var(--dark-green);
             font-weight: bold;
             max-width: 700px;
@@ -265,7 +270,7 @@
 
         /* Button */
         #search-btn {
-            background: linear-gradient(135deg, var(--sage-green), var(--deep-sage));
+            background: linear-gradient(135deg, var(--sage-green), var(--dark-green));
             color: white;
             border: none;
             padding: 20px 35px;
@@ -279,7 +284,7 @@
             letter-spacing: 0.8px;
             position: relative;
             overflow: hidden;
-            font-family: var(--calligraphic-secondary);
+            font-family: var(--greek-calligraphy);
         }
 
         #search-btn::before {
@@ -715,7 +720,8 @@
         }
 
         .wedding-date {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--greek-calligraphy);
+            font-style: italic;
             font-size: 1.4rem;
             color: var(--deep-sage);
             font-weight: 600;
@@ -790,7 +796,7 @@
 
             .header {
                 padding: 35px 25px;
-                margin-bottom: 40px;
+                margin-bottom: 10px;
             }
 
             .header h1 {
@@ -881,16 +887,21 @@
 </head>
 
 <body>
-    <div class="container py-5">
+    <div class="container py-1">
         <!-- Header -->
         <header class="header">
-            <h1>Find Your Table</h1>
             <div class="floral-icons mb-1">
                 <span class="floral-icon">❁</span>
                 <span class="floral-icon">✿</span>
                 <span class="floral-icon">❀</span>
             </div>
-            <p>You don't have to wait in line , find your table easy and fast !</p>
+            <h1>Βρες το τραπέζι σου</h1>
+            <div class="floral-icons mb-1">
+                <span class="floral-icon">❁</span>
+                <span class="floral-icon">✿</span>
+                <span class="floral-icon">❀</span>
+            </div>
+            <p>Δεν χρειάζεται να περιμένεις στην ουρά, βρές το τραπέζι σου γρήγορα και εύκολα !</p>
         </header>
 
         <!-- Search Section -->
@@ -898,22 +909,22 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="search-container mb-4">
-                        <input type="text" id="guest-search" class="form-control" style="font-family: var(--calligraphic-secondary);" placeholder="Type your name..."
+                        <input type="text" id="guest-search" class="form-control" style="font-family: var(--greek-calligraphy);" placeholder="Γράψε το όνομα σου..."
                             autocomplete="off">
                         <div id="suggestions" class="suggestions-dropdown"></div>
                     </div>
 
                     <button id="search-btn" class="btn mb-4">
-                        <i class="fas fa-search me-3"></i> Find My Seat
+                        <i class="fas fa-search me-3"></i> Βρες το τραπέζι σου
                     </button>
 
-                    <div class="or-divider" style="font-family: var(--serif-elegant);">
-                        <span>or choose from the list</span>
+                    <div class="or-divider" style="font-family: var(--greek-calligraphy); font-style: italic;">
+                        <span>ή διάλεξε απο την λίστα</span>
                     </div>
 
                     <div class="dropdown-container">
-                        <select id="guest-dropdown"  class="form-select" style="font-family: var(--calligraphic-secondary);">
-                            <option value="">Click to Toggle</option>
+                        <select id="guest-dropdown"  class="form-select" style="font-family: var(--greek-calligraphy);">
+                            <option value="">Πάτα για να δείς την λίστα</option>
                             <!-- populated via JavaScript -->
                         </select>
                     </div>
@@ -925,7 +936,7 @@
         <div id="result" class="result-container hidden">
             <div class="guest-info">
                 <h2 id="guest-name"></h2>
-                <p>Your table number is</p>
+                <p>Ο αριθμός του τραπεζιού σου είναι</p>
                 <div class="table-number" id="table-number"></div>
             </div>
         </div>
@@ -944,9 +955,9 @@
 
         <!-- Footer -->
         <div class="footer">
-            <p class="wedding-date">June 20, 2025</p>
-            <p style="font-family: var(--calligraphic-secondary); font-weight: bold;" >Korina & Fillipo's Wedding Celebration</p>
-            <p style="font-family: var(--serif-elegant);" class="mt-3">With love and gratitude for sharing our special day</p>
+            <p class="wedding-date">20 Ιουνίου, 2026</p>
+            <p style="font-family: var(--greek-calligraphy); font-weight: bold; font-size: 2em;" >Κορίνα & Φίλλιπος</p>
+            <p style="font-family: var(--greek-calligraphy); font-style: italic; font-size: 1.5em;" class="mt-3">Με αγάπη που μοιράζεστε αυτή την ιδιαίτερη μέρα μαζί μας.</p>
         </div>
     </div>
 
